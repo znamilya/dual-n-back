@@ -1,0 +1,11 @@
+{
+  "name": "dual-n-back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/znamilya/dual-n-back.git",
+    "type": "git"
+  },
+  "author": "Ilya Znamensky <i.znamensky@semrush.com>",
+  "license": "MIT"
+}

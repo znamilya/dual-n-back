@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import bemCl from 'bem-cl';
 
+import Board from 'components/molecules/Board/Board';
+
 import './App.styl';
 
 
@@ -15,7 +17,7 @@ class App extends React.Component {
                         <h1 className={b('title')}>Dual N Back</h1>
                     </header>
                     <main className={b('main')}>
-
+                        <Board activeIndex={2} />
                     </main>
 
                     <footer className={b('footer')}>

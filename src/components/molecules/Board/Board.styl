@@ -1,0 +1,42 @@
+.board
+    position: relative
+
+    width: 100%
+    padding: 100% 0 0
+
+    background: tomato
+
+
+    &__cells
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+
+        margin: 0
+        padding: 0
+
+        list-style: none
+
+
+    &__cell
+        box-sizing: border-box
+        float: left
+
+        width: calc(100% / 3)
+        padding: calc(100% / 3) 0 0
+
+        box-shadow: inset 0 0 0 1px #000
+
+
+        &_active
+            background: yellowgreen
+
+
+.cell-appear
+    opacity: 0
+
+.cell-appear.cell-appear-active
+    opacity: 1
+    transition: opacity .5s ease-in

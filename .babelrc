@@ -1,0 +1,8 @@
+{
+    "presets": ["latest", "react"],
+    "plugins": [
+        "react-hot-loader/babel",
+        "transform-class-properties",
+        "transform-decorators-legacy"
+    ]
+}

@@ -30,6 +30,10 @@ module.exports = {
                 loaders: ['file-loader?name=img/[name].[ext]'],
             },
             {
+                test: /\.mp3$/,
+                loaders: ['file-loader'],
+            },
+            {
                 test: /\.styl$/,
                 loaders: ['style-loader', 'css-loader', 'stylus-loader'],
             },

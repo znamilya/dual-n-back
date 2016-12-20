@@ -10,7 +10,7 @@ const b = bemCl('board');
 class Board extends React.Component {
 
     static propsTypes = {
-        activeIndex: PropTypes.number
+        position: PropTypes.number
     };
 
     constructor(props) {
@@ -19,30 +19,18 @@ class Board extends React.Component {
         this.cellsStub = (new Array(9)).fill(1);
     }
 
+
     /* ------------------------------------------------------------------------------------------ */
     /* RENDER                                                                                     */
     /* ------------------------------------------------------------------------------------------ */
     renderCells() {
-        return this.cellsStub.map((cell, index) => {
-            const itemElem = <li className={b('cell')} key={index} />;
-
-            if (this.props.activeIndex === index) {
-                return (
-                    <ReactCSSTransitionGroup
-                        transitionName="cell"
-                        transitionAppear={true}
-                        transitionAppearTimeout={500}
-                        transitionEnter={false}
-                        transitionLeave={false}
-                        key={index}
-                    >
-                        <li className={b('cell')} />
-                    </ReactCSSTransitionGroup>
-                );
-            }
-
-            return itemElem;
-        });
+        return this.cellsStub.map((cell, index) => (
+            <li className={b('cell', {
+                active: index === this.props.position
+            })}
+                key={index}
+            />
+        ));
     }
 
     render() {

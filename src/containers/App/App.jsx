@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import bemCl from 'bem-cl';
 
-import Board from 'components/molecules/Board/Board';
+import Menu from 'components/organisms/Menu/Menu';
+import Game from 'components/organisms/Game/Game';
 
 import './App.styl';
 
@@ -9,6 +10,7 @@ import './App.styl';
 const b = bemCl('app');
 
 class App extends React.Component {
+
     render() {
         return (
             <div className={b()}>
@@ -17,7 +19,12 @@ class App extends React.Component {
                         <h1 className={b('title')}>Dual N Back</h1>
                     </header>
                     <main className={b('main')}>
-                        <Board activeIndex={2} />
+                        <Menu />
+                        {/* <Game
+                            step={1}
+                            position={5}
+                            letter="L"
+                        /> */}
                     </main>
 
                     <footer className={b('footer')}>

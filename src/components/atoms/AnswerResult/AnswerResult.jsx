@@ -1,0 +1,37 @@
+import React, { PropTypes } from 'react';
+import bemCl from 'bem-cl';
+
+
+import './AnswerResult.styl';
+
+
+const b = bemCl('answer-result');
+
+class AnswerResult extends React.Component {
+
+    static propTypes = {
+        correct: PropTypes.bool,
+    };
+
+    resolveText(isCorrect) {
+        if (isCorrect) {
+            return 'Correct!';
+        }
+
+        return 'Wrong';
+    }
+
+    render() {
+        return (
+            <div className={b({
+                correct: this.props.correct,
+                wrong: !this.props.correct,
+            })}>
+                {this.resolveText(this.props.correct)}
+            </div>
+        );
+    }
+}
+
+
+export default AnswerResult;

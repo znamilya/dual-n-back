@@ -12,19 +12,19 @@ const b = bemCl('menu');
 class Menu extends React.Component {
 
     static propTypes = {
+        onStart: PropTypes.func.isRequired,
     };
 
     render() {
         return (
             <div className={b()}>
                 <StartButton
-                    onClick={() => {
-                        console.log('start game!');
-                    }}
+                    onClick={this.props.onStart}
                 />
                 <NCounter
-                    onChange={() => {
-                        console.log('n change');
+                    value={4}
+                    onChange={(value) => {
+                        console.log(value);
                     }}
                 />
             </div>

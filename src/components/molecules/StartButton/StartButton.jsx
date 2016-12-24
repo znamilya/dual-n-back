@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react';
 import bemCl from 'bem-cl';
 
+import './StartButton.styl';
+
+
+const b = bemCl('start-button');
 
 class StartButton extends React.Component {
 
@@ -10,7 +14,11 @@ class StartButton extends React.Component {
 
     render() {
         return (
-            <button onClick={this.props.onClick}>Start!</button>
+            <span className={b()}
+                onClick={this.props.onClick}
+            >
+                Start!
+            </span>
         );
     }
 }

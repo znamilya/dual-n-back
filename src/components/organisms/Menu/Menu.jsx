@@ -32,8 +32,9 @@ class Menu extends React.Component {
             <div className={b()}>
                 <StartButton onClick={this.props.startGame} />
                 <NCounter
-                    onChange={() => {
-                        console.log('n change');
+                    value={4}
+                    onChange={(value) => {
+                        console.log(value);
                     }}
                 />
             </div>

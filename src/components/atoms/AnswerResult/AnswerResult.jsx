@@ -10,6 +10,7 @@ const b = bemCl('answer-result');
 class AnswerResult extends React.Component {
 
     static propTypes = {
+        has: PropTypes.bool,
         correct: PropTypes.bool,
     };
 
@@ -22,6 +23,10 @@ class AnswerResult extends React.Component {
     }
 
     render() {
+        if (!this.props.has) {
+            return null;
+        }
+
         return (
             <div className={b({
                 correct: this.props.correct,

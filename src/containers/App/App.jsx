@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import bemCl from 'bem-cl';
 
 import Menu from 'components/organisms/Menu/Menu';
@@ -9,7 +10,25 @@ import './App.styl';
 
 const b = bemCl('app');
 
+@connect(
+    (state) => ({
+        screen: state.screen,
+    }),
+)
 class App extends React.Component {
+
+    renderMain() {
+        switch (this.props.screen) {
+            case 'game': {
+                return <Game />;
+            }
+
+            case 'menu':
+            default: {
+                return <Menu />;
+            }
+        }
+    }
 
     render() {
         return (
@@ -19,12 +38,7 @@ class App extends React.Component {
                         <h1 className={b('title')}>Dual N Back</h1>
                     </header>
                     <main className={b('main')}>
-                        <Menu />
-                        {/* <Game
-                            step={1}
-                            position={5}
-                            letter="L"
-                        /> */}
+                        {this.renderMain()}
                     </main>
 
                     <footer className={b('footer')}>

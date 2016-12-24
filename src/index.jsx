@@ -7,10 +7,14 @@ import configureStore from 'configureStore';
 import App from './containers/App/App';
 
 
-// const store = configureStore();
+const store = configureStore();
 const rootNode = document.getElementById('root');
 const render = (App) => {
-    ReactDOM.render(<App />, rootNode);
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+    rootNode);
 }
 
 render(App);
@@ -18,7 +22,7 @@ render(App);
 if (module.hot) {
     module.hot.accept('./containers/App/App', () => {
         const NextApp = require('./containers/App/App').default;
-        
+
         render(NextApp);
     });
 }

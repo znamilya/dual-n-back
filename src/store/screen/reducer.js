@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 
 
-export default function screen(state = 'game', action) {
+export default function screen(state = 'menu', action) {
     switch (action.type) {
         case actionTypes.CHANGE: {
             return action.nextScreen;

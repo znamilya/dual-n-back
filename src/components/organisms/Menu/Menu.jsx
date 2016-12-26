@@ -7,6 +7,7 @@ import StartButton from 'components/molecules/StartButton/StartButton';
 import NCounter from 'components/molecules/NCounter/NCounter';
 // Store
 import * as screenActions from 'store/screen/actions';
+import * as nActions from 'store/n/actions';
 
 import './Menu.styl';
 
@@ -15,16 +16,20 @@ const b = bemCl('menu');
 
 @connect(
     (state) => ({
+        n: state.n,
     }),
     {
         startGame: screenActions.change.bind(null, 'game'),
+        updateN: nActions.update,
     }
 )
 class Menu extends React.Component {
 
     static propTypes = {
         // Store
+        n: PropTypes.number,
         startGame: PropTypes.func,
+        updateN: PropTypes.func,
     };
 
     render() {
@@ -32,10 +37,8 @@ class Menu extends React.Component {
             <div className={b()}>
                 <StartButton onClick={this.props.startGame} />
                 <NCounter
-                    value={4}
-                    onChange={(value) => {
-                        console.log(value);
-                    }}
+                    value={this.props.n}
+                    onChange={this.props.updateN}
                 />
             </div>
         );

@@ -9,10 +9,8 @@ import HotKey from 'components/atoms/HotKey/HotKey';
 import AnswerResult from 'components/atoms/AnswerResult/AnswerResult';
 // Actions
 import * as gameActions from 'store/game/actions';
-import * as quessActions from 'store/quess/actions';
 // Selectors
-import { getCurrentPosition, getCurrentLetter } from 'store/game/selectors';
-import { getPositionQuess, getLetterQuess } from 'store/quess/selectors';
+import { getCurrentPosition, getCurrentLetter, getPositionQuess, getLetterQuess } from 'store/game/selectors';
 
 import './Game.styl';
 
@@ -23,17 +21,17 @@ const b = bemCl('game');
     (state) => ({
         n: state.n,
         isFinished: state.game.isFinished,
+        step: state.game.step,
+        position: getCurrentPosition(state),
+        letter: getCurrentLetter(state),
         positionQuess: getPositionQuess(state),
         letterQuess: getLetterQuess(state),
-        step: state.game.step,
-        position: getCurrentPosition(state.game),
-        letter: getCurrentLetter(state.game),
     }),
     {
         start: gameActions.start,
         nextStep: gameActions.nextStep,
-        firePositionQuess: quessActions.fire.bind(null, 'position'),
-        fireLetterQuess: quessActions.fire.bind(null, 'letter'),
+        quessPosition: gameActions.quess.bind(null, 'position'),
+        quessLetter: gameActions.quess.bind(null, 'letter'),
     }
 )
 class Game extends React.Component {
@@ -72,7 +70,7 @@ class Game extends React.Component {
                         <HotKey
                             value="f"
                             desc="Position match"
-                            onFire={this.props.firePositionQuess}
+                            onFire={this.props.quessPosition}
                         />
                         <AnswerResult
                             has={this.props.positionQuess.has}
@@ -83,7 +81,7 @@ class Game extends React.Component {
                         <HotKey
                             value="j"
                             desc="Sound match"
-                            onFire={this.props.fireLetterQuess}
+                            onFire={this.props.quessLetter}
                         />
                         <AnswerResult
                             has={this.props.letterQuess.has}

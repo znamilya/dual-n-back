@@ -48,7 +48,9 @@ export default function game(state = defaultState, action) {
 
         case actionTypes.QUESS: {
             return Object.assign({}, state, {
-                [action.target]: true,
+                quess: Object.assign({}, state.quess, {
+                    [action.target]: true,
+                })
             });
         }
 

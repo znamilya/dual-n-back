@@ -9,6 +9,10 @@ import './App.styl';
 
 
 const b = bemCl('app');
+const MAIN_ELEM_MAP = {
+    game: <Game />,
+    menu: <Menu />,
+}
 
 @connect(
     (state) => ({
@@ -16,19 +20,6 @@ const b = bemCl('app');
     }),
 )
 class App extends React.Component {
-
-    renderMain() {
-        switch (this.props.screen) {
-            case 'game': {
-                return <Game />;
-            }
-
-            case 'menu':
-            default: {
-                return <Menu />;
-            }
-        }
-    }
 
     render() {
         return (
@@ -38,10 +29,11 @@ class App extends React.Component {
                         <h1 className={b('title')}>Dual N Back</h1>
                     </header>
                     <main className={b('main')}>
-                        {this.renderMain()}
+                        {MAIN_ELEM_MAP[this.props.screen]}
                     </main>
 
                     <footer className={b('footer')}>
+                        2016
                     </footer>
                 </div>
             </div>

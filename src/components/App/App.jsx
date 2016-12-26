@@ -3,6 +3,7 @@ import bemCl from 'bem-cl';
 
 import Menu from 'components/organisms/Menu/Menu';
 import Game from 'components/organisms/Game/Game';
+import Result from 'components/organisms/Result/Result';
 
 import './App.styl';
 
@@ -39,7 +40,7 @@ class App extends React.Component {
                         <h1 className={b('title')}>Dual N Back</h1>
                     </header>
                     <main className={b('main')}>
-                        {screenElem}
+                        <Result result={10} total={25} />
                     </main>
 
                     <footer className={b('footer')}>

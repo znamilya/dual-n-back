@@ -28,7 +28,7 @@ const generatePositions = (length, n) => {
         result.push(random(0, 8));
     }
 
-    return [1, 5, ...result];
+    return result;
 }
 
 const generateLetters = (length, n) => {

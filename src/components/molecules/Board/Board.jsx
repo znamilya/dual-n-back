@@ -17,7 +17,18 @@ class Board extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.cellsStub = (new Array(9)).fill(1);
+        this.cellsStub = this.createCells();
+    }
+
+
+    createCells() {
+        return (new Array(9))
+            .fill(1)
+            .map((cell, index) => {
+                return {
+                    id: `cell-${index}`,
+                };
+            });
     }
 
 
@@ -29,7 +40,7 @@ class Board extends React.PureComponent {
             <li className={b('cell', {
                 active: index === this.props.position
             })}
-                key={this.props.step + index}
+                key={cell.id + this.props.step}
             />
         ));
     }

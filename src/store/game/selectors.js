@@ -1,21 +1,20 @@
-const getQuess = (target, from, state) => {
-    const step = state.game.step;
-    const all = state.game[from];
+const getQuess = (target, from, game, n) => {
+    const step = game.step;
+    const all = game[from];
     const current = all[step];
-    const n = state.n;
 
     return {
-        has: state.game.quess[target],
+        has: game.quess[target],
         correct: current === all[step - n],
     };
 }
 
-export const getCurrentPosition = (state) => {
-    return state.game.positions[state.game.step];
+export const getCurrentPosition = (game) => {
+    return game.positions[game.step];
 }
 
-export const getCurrentLetter = (state) => {
-    return state.game.letters[state.game.step];
+export const getCurrentLetter = (game) => {
+    return game.letters[game.step];
 }
 
 export const getPositionQuess = getQuess.bind(null, 'position', 'positions');

@@ -12,7 +12,7 @@ import Result from 'components/molecules/Result/Result';
 import * as screenActions from 'store/screen/actions';
 import * as gameActions from 'store/game/actions';
 // Selectors
-import { getCurrentPosition, getCurrentLetter, getPositionQuess, getLetterQuess } from 'store/game/selectors';
+import * as selectors from 'store/game/selectors';
 import { STATE_MAP } from 'store/game/reducer';
 
 import './Game.styl';
@@ -26,10 +26,10 @@ const b = bemCl('game');
         state: state.game.state,
         step: state.game.step,
         totalSteps: state.game.totalSteps,
-        position: getCurrentPosition(state),
-        letter: getCurrentLetter(state),
-        positionQuess: getPositionQuess(state),
-        letterQuess: getLetterQuess(state),
+        position: selectors.getCurrentPosition(state.game,),
+        letter: selectors.getCurrentLetter(state.game,),
+        positionQuess: selectors.getPositionQuess(state.game, state.n),
+        letterQuess: selectors.getLetterQuess(state.game, state.n),
     }),
     {
         prepare: gameActions.prepare,

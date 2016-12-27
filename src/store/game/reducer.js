@@ -8,6 +8,7 @@ export const STATE_MAP = {
     finished: 3,
 };
 
+const availableLetters = ['l', 't', 'k', 'm', 'h'];
 
 const defaultState = {
     state: STATE_MAP.prepare,
@@ -35,7 +36,9 @@ const generateLetters = (length, n) => {
     const result = [];
 
     for (let i = 0; i < length; i ++) {
-        result.push('l');
+        const letter = availableLetters[random(0, 4)];
+
+        result.push(letter);
     }
 
     return result;

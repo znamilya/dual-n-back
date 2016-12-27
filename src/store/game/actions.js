@@ -27,6 +27,12 @@ export const nextStep = () => {
     };
 }
 
+export const calcStepScore = () => {
+    return {
+        type: actionTypes.CALC_STEP_SCORE,
+    };
+}
+
 export const finish = () => {
     return {
         type: actionTypes.FINISH,

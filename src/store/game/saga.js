@@ -17,6 +17,7 @@ function* handlePrepare() {
     for (let step = 0; step < STEPS_COUNT; step++) {
         yield put(actions.nextStep());
         yield call(delay, STEP_TIME_MS);
+        yield put(actions.calcStepScore());
     }
 
     yield put(actions.finish());

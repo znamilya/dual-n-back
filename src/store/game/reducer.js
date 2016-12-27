@@ -20,6 +20,10 @@ const defaultState = {
         position: false,
         letter: false,
     },
+    score: {
+        positions: 0,
+        letters: 0,
+    },
 }
 
 const generatePositions = (length, n) => {
@@ -44,47 +48,68 @@ const generateLetters = (length, n) => {
     return result;
 }
 
+const checkIfPositionQuessIsCorrect = () => {
+
+}
+const checkIfLetterQuessIsCorrect = () => {
+
+}
 
 export default function game(state = defaultState, action) {
     switch (action.type) {
         case actionTypes.PREPARE: {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 state: STATE_MAP.prepare,
                 letters: generateLetters(state.totalSteps, action.n),
                 positions: generatePositions(state.totalSteps, action.n),
-            })
+            };
         }
 
         case actionTypes.START: {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 state: STATE_MAP.running,
-            })
+            };
         }
 
         case actionTypes.QUESS: {
-            return Object.assign({}, state, {
-                quess: Object.assign({}, state.quess, {
+            return {
+                ...state,
+                quess: {
+                    ...state.quess,
                     [action.target]: true,
-                })
-            });
+                },
+            };
         }
 
 
         case actionTypes.NEXT_STEP: {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 step: state.step + 1,
                 quess: {
                     position: false,
                     letter: false,
                 },
-            });
+            };
         }
 
+        case actionTypes.CALC_STEP_SCORE: {
+            return {
+                ...state,
+                quess: {
+                    positions: checkIfPositionQuessIsCorrect(),
+                    letters: checkIfLetterQuessIsCorrect(),
+                }
+            };
+        }
 
         case actionTypes.FINISH: {
-            return Object.assign({}, defaultState, {
+            return {
+                ...defaultState,
                 state: STATE_MAP.finished,
-            });
+            };
         }
 
         default: {

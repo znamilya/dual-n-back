@@ -6,5 +6,6 @@ export default createActionTypes('game', [
     'START',
     'QUESS',
     'NEXT_STEP',
+    'CALC_STEP_SCORE',
     'FINISH',
 ]);

@@ -1,23 +1,24 @@
 import { createStore, applyMiddleware } from 'redux';
-// import { browserHistory } from 'react-router';
-// import { routerMiddleware  from 'react-router-redux';
+import createSagaMiddleware from 'redux-saga'
 
-// import async from 'middleware/async.jsx';
-// import combineActions from 'middleware/combineActions.jsx';
 import logAction from 'middlewares/logAction';
-// import thunk from 'middleware/thunk.jsx';
 import rootReducer from './rootReducer';
+import rootSaga from './rootSaga';
 
 
-// const router = routerMiddleware(browserHistory);
-// const middlewares = [combineActions, async, router, thunk, funnel];
-const middlewares = [];
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
 
 // if (process.env.NODE_ENV === 'development') {
     middlewares.push(logAction);
 // }
 
 
+
 export default function (initialData) {
-    return applyMiddleware(...middlewares)(createStore)(rootReducer, initialData);
+    const store = applyMiddleware(...middlewares)(createStore)(rootReducer, initialData);
+
+    sagaMiddleware.run(rootSaga);
+
+    return store;
 }

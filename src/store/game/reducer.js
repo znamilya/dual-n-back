@@ -2,11 +2,17 @@ import { random } from 'helpers/math';
 import actionTypes from './actionTypes';
 
 
+export const STATE_MAP = {
+    prepare: 1,
+    running: 2,
+    finished: 3,
+};
+
+
 const defaultState = {
-    isRunning: false,
-    isFinished: false,
-    step: 0,
-    totalSteps: 25,
+    state: STATE_MAP.prepare,
+    step: -1,
+    totalSteps: 24,
     letters: [],
     positions: [],
     quess: {
@@ -22,7 +28,7 @@ const generatePositions = (length, n) => {
         result.push(random(0, 8));
     }
 
-    return result;
+    return [1, 5, ...result];
 }
 
 const generateLetters = (length, n) => {
@@ -38,11 +44,17 @@ const generateLetters = (length, n) => {
 
 export default function game(state = defaultState, action) {
     switch (action.type) {
-        case actionTypes.START: {
+        case actionTypes.PREPARE: {
             return Object.assign({}, state, {
-                isRunning: true,
+                state: STATE_MAP.prepare,
                 letters: generateLetters(state.totalSteps, action.n),
                 positions: generatePositions(state.totalSteps, action.n),
+            })
+        }
+
+        case actionTypes.START: {
+            return Object.assign({}, state, {
+                state: STATE_MAP.running,
             })
         }
 
@@ -68,7 +80,7 @@ export default function game(state = defaultState, action) {
 
         case actionTypes.FINISH: {
             return Object.assign({}, defaultState, {
-                isFinished: true,
+                state: STATE_MAP.finished,
             });
         }
 

@@ -1,5 +1,8 @@
 .answer-result
+    $visibleTime = .5s
+
     text-align: center
+    animation: flash $visibleTime forwards
 
 
     &_correct
@@ -8,3 +11,14 @@
 
     &_wrong
         color: tomato
+
+
+    @keyframes flash
+        0%
+            opacity: 1
+
+        90%
+            opacity: 1
+
+        100%
+            opacity: 0

@@ -7,10 +7,11 @@ import './Board.styl';
 
 const b = bemCl('board');
 
-class Board extends React.Component {
+class Board extends React.PureComponent {
 
     static propsTypes = {
-        position: PropTypes.number
+        position: PropTypes.number,
+        step: PropTypes.number,
     };
 
     constructor(props) {
@@ -28,12 +29,13 @@ class Board extends React.Component {
             <li className={b('cell', {
                 active: index === this.props.position
             })}
-                key={index}
+                key={this.props.step + index}
             />
         ));
     }
 
     render() {
+        console.log(this.props.position);
         return (
             <div className={b()}>
                 <ul className={b('cells')}>

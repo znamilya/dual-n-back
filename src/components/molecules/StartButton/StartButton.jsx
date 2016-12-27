@@ -6,7 +6,7 @@ import './StartButton.styl';
 
 const b = bemCl('start-button');
 
-class StartButton extends React.Component {
+class StartButton extends React.PureComponent {
 
     static propTypes = {
         onClick: PropTypes.func.isRequired,

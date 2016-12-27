@@ -5,11 +5,8 @@ import n from 'store/n/reducer';
 import screen from 'store/screen/reducer';
 
 
-const rootReducer = combineReducers({
+export default combineReducers({
     game,
     n,
     screen,
 });
-
-
-export default rootReducer;

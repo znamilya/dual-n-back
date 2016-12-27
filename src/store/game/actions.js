@@ -1,10 +1,16 @@
 import actionTypes from './actionTypes';
 
 
-export const start = (n) => {
+export const prepare = (n) => {
+    return {
+        type: actionTypes.PREPARE,
+        n,
+    };
+}
+
+export const start = () => {
     return {
         type: actionTypes.START,
-        n,
     };
 }
 

@@ -4,7 +4,6 @@ import bemCl from 'bem-cl';
 
 import Menu from 'components/organisms/Menu/Menu';
 import Game from 'components/organisms/Game/Game';
-import Result from 'components/organisms/Result/Result';
 
 import './App.styl';
 

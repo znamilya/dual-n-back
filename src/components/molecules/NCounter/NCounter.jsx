@@ -6,7 +6,7 @@ import './NCounter.styl';
 
 const b = bemCl('n-counter');
 
-class NCounter extends React.Component {
+class NCounter extends React.PureComponent {
 
     static propTypes = {
         value: PropTypes.number.isRequired,

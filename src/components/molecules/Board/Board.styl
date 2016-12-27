@@ -24,12 +24,35 @@
 
 
     &__cell
+        $visibleTime = .5s
+        $bgColor = #ddd
+        $bgColorActive = #aaa
+
         box-sizing: border-box
         float: left
+        opacity: 1
 
         width: $cellSize
         height: $cellSize
 
+        background: $bgColor
+        border: 4px solid #fff
+
 
         &_active
-            background: yellowgreen
+            background: $bgColorActive
+            animation: activeCell $visibleTime forwards
+
+
+        @keyframes activeCell
+            0%
+                background: $bgColor
+
+            5%
+                background: $bgColorActive
+
+            90%
+                background: $bgColorActive
+
+            100%
+                background: $bgColor

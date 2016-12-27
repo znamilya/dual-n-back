@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import bemCl from 'bem-cl';
 
-import Lsrc from './sounds/L.mp3';
+import Lsrc from './sounds/l.mp3';
 
 
 const b = bemCl('voice');

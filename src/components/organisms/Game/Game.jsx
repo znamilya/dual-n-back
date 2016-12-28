@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import bemCl from 'bem-cl';
 
 // Components
-import HotKey from 'components/atoms/HotKey/HotKey';
-import AnswerResult from 'components/atoms/AnswerResult/AnswerResult';
 import Board from 'components/molecules/Board/Board';
+import Control from 'components/molecules/Control/Control';
 import Voice from 'components/molecules/Voice/Voice';
 import Result from 'components/molecules/Result/Result';
 // Actions
@@ -13,7 +12,7 @@ import * as screenActions from 'store/screen/actions';
 import * as gameActions from 'store/game/actions';
 // Selectors
 import * as selectors from 'store/game/selectors';
-import { STATE_MAP } from 'store/game/reducer';
+import { STAGE_MAP } from 'store/game/constants';
 
 import './Game.styl';
 
@@ -22,14 +21,16 @@ const b = bemCl('game');
 
 @connect(
     (state) => ({
-        n: state.n,
-        state: state.game.state,
+        n: state.game.n,
+        stage: state.game.stage,
         step: state.game.step,
+        score: state.game.score,
+        isQuessDisabled: selectors.isQuessDisabled(state.game),
         totalSteps: state.game.totalSteps,
-        position: selectors.getCurrentPosition(state.game,),
-        letter: selectors.getCurrentLetter(state.game,),
-        positionQuess: selectors.getPositionQuess(state.game, state.n),
-        letterQuess: selectors.getLetterQuess(state.game, state.n),
+        position: selectors.getCurrentPosition(state.game),
+        letter: selectors.getCurrentLetter(state.game),
+        positionQuess: selectors.getPositionQuess(state.game),
+        letterQuess: selectors.getLetterQuess(state.game),
     }),
     {
         prepare: gameActions.prepare,
@@ -41,37 +42,23 @@ const b = bemCl('game');
 )
 class Game extends React.Component {
 
-    static propTypes = {
-        // Store
-        step: PropTypes.number,
-        position: PropTypes.number,
-        letter: PropTypes.string,
-        checkPosition: PropTypes.func,
-        checkLetter: PropTypes.func,
-    };
-
+    /* ------------------------------------------------------------------------------------------ */
+    /* REACT                                                                                      */
+    /* ------------------------------------------------------------------------------------------ */
     componentWillMount() {
-        this.props.prepare(this.props.n);
+        this.props.prepare();
     }
 
-    render() {
-        if (this.props.state === STATE_MAP.prepare) {
-            return (
-                <div className={b()}>
-                    <div className={b('board')}>
-                        <Board
-                            position={this.props.position}
-                            step={this.props.step}
-                        />
-                    </div>
-                </div>
-            );
-        }
 
-        if (this.props.state === STATE_MAP.finished) {
+    /* ------------------------------------------------------------------------------------------ */
+    /* RENDER                                                                                     */
+    /* ------------------------------------------------------------------------------------------ */
+    render() {
+        if (this.props.stage === STAGE_MAP.finished) {
             return (
                 <Result
-                    result={5}
+                    positions={this.props.score.positions}
+                    letters={this.props.score.letters}
                     total={this.props.totalSteps}
                     onOk={this.props.showMenu}
                 />
@@ -93,28 +80,22 @@ class Game extends React.Component {
                     />
                 </div>
                 <div className={b('controls')}>
-                    <span className={b('control')}>
-                        <HotKey
-                            value="f"
-                            desc="Position match"
-                            onFire={this.props.quessPosition}
-                        />
-                        <AnswerResult
-                            has={this.props.positionQuess.has}
-                            correct={this.props.positionQuess.correct}
-                        />
-                    </span>
-                    <span className={b('control')}>
-                        <HotKey
-                            value="j"
-                            desc="Sound match"
-                            onFire={this.props.quessLetter}
-                        />
-                        <AnswerResult
-                            has={this.props.letterQuess.has}
-                            correct={this.props.letterQuess.correct}
-                        />
-                    </span>
+                    <Control
+                        value="f"
+                        desc="Position match"
+                        has={this.props.positionQuess.has}
+                        correct={this.props.positionQuess.correct}
+                        disabled={this.props.isQuessDisabled}
+                        onFire={this.props.quessPosition}
+                    />
+                    <Control
+                        value="j"
+                        desc="Sound match"
+                        has={this.props.letterQuess.has}
+                        correct={this.props.letterQuess.correct}
+                        disabled={this.props.isQuessDisabled}
+                        onFire={this.props.quessLetter}
+                    />
                 </div>
             </div>
         );

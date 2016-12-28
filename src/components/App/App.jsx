@@ -31,10 +31,6 @@ class App extends React.Component {
                     <main className={b('main')}>
                         {MAIN_ELEM_MAP[this.props.screen]}
                     </main>
-
-                    <footer className={b('footer')}>
-                        2016
-                    </footer>
                 </div>
             </div>
         );

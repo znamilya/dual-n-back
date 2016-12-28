@@ -12,6 +12,10 @@ class StartButton extends React.PureComponent {
         onClick: PropTypes.func.isRequired,
     };
 
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* RENDER                                                                                     */
+    /* ------------------------------------------------------------------------------------------ */
     render() {
         return (
             <span className={b()}

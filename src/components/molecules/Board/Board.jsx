@@ -21,6 +21,9 @@ class Board extends React.PureComponent {
     }
 
 
+    /* ------------------------------------------------------------------------------------------ */
+    /* METHODS                                                                                    */
+    /* ------------------------------------------------------------------------------------------ */
     createCells() {
         return (new Array(9))
             .fill(1)
@@ -46,7 +49,6 @@ class Board extends React.PureComponent {
     }
 
     render() {
-        console.log(this.props.position);
         return (
             <div className={b()}>
                 <ul className={b('cells')}>

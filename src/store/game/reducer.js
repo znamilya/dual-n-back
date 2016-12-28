@@ -1,19 +1,14 @@
-import { random } from 'helpers/math';
+import { compose } from 'redux';
+import { random, fitInRange, shuffle } from 'helpers/math';
 import actionTypes from './actionTypes';
+import { STAGE_MAP, MIN_N, MAX_N, STEPS_TOTAL_COUNT, AVAILABLE_LETTERS } from './constants';
 
-
-export const STATE_MAP = {
-    prepare: 1,
-    running: 2,
-    finished: 3,
-};
-
-const availableLetters = ['l', 't', 'k', 'm', 'h'];
 
 const defaultState = {
-    state: STATE_MAP.prepare,
+    n: 1,
+    stage: STAGE_MAP.prepare,
     step: -1,
-    totalSteps: 24,
+    totalSteps: STEPS_TOTAL_COUNT,
     letters: [],
     positions: [],
     quess: {
@@ -26,54 +21,90 @@ const defaultState = {
     },
 }
 
-const generatePositions = (length, n) => {
-    const result = [];
+const createPositionsSequence = (length) => {
+    let result = [];
 
-    for (let i = 0; i < length; i ++) {
-        result.push(random(0, 8));
+    for (let i = 0, j = 0; i < length; i++) {
+        result.push(i % 9);
     }
 
-    return result;
+    return shuffle(result);
 }
 
-const generateLetters = (length, n) => {
-    const result = [];
+const createLetterSequence = (length) => {
+    let result = [];
 
-    for (let i = 0; i < length; i ++) {
-        const letter = availableLetters[random(0, 4)];
-
-        result.push(letter);
+    for (let i = 0, j = 0; i < length; i++) {
+        result.push(AVAILABLE_LETTERS[i % AVAILABLE_LETTERS.length]);
     }
 
-    return result;
+    return shuffle(result);
 }
 
-const checkIfPositionQuessIsCorrect = () => {
+const createSequenceWithMatches = (sequence, n) => {
+    const minMatchCount = Math.floor(Math.sqrt(10));
+    let maybeMatchIndexes = [];
 
+    for (let i = n; i < sequence.length; i++) {
+        maybeMatchIndexes.push(i);
+    }
+
+    for (let i = 0; i < minMatchCount; i++) {
+        const matchIndexIndex = random(0, maybeMatchIndexes.length - 1);
+        const matchIndex = maybeMatchIndexes.splice(matchIndexIndex, 1)[0];
+
+        if (matchIndexIndex - n >= 0) {
+            maybeMatchIndexes.splice(matchIndexIndex - n, 1);
+        }
+
+        sequence[matchIndex] = sequence[matchIndex - n];
+    }
+
+    return sequence;
 }
-const checkIfLetterQuessIsCorrect = () => {
 
+const isMatch = (state, key) => {
+    return state[key][state.step] === state[key][state.step - state.n];
+}
+
+const updateScore = (score, isCorrect) => {
+    return isCorrect ? score : score - 1;
 }
 
 export default function game(state = defaultState, action) {
     switch (action.type) {
+        case actionTypes.UPDATE_N: {
+            return {
+                ...state,
+                n: fitInRange(action.nextN, MIN_N, MAX_N),
+            };
+        }
+
         case actionTypes.PREPARE: {
             return {
                 ...state,
-                state: STATE_MAP.prepare,
-                letters: generateLetters(state.totalSteps, action.n),
-                positions: generatePositions(state.totalSteps, action.n),
+                stage: STAGE_MAP.prepare,
+                letters: createSequenceWithMatches(createLetterSequence(state.totalSteps), state.n),
+                positions: createSequenceWithMatches(createPositionsSequence(state.totalSteps), state.n),
+                score: {
+                    positions: STEPS_TOTAL_COUNT,
+                    letters: STEPS_TOTAL_COUNT,
+                }
             };
         }
 
         case actionTypes.START: {
             return {
                 ...state,
-                state: STATE_MAP.running,
+                stage: STAGE_MAP.running,
             };
         }
 
         case actionTypes.QUESS: {
+            if (state.stage !== STAGE_MAP.running) {
+                return state;
+            }
+
             return {
                 ...state,
                 quess: {
@@ -96,19 +127,22 @@ export default function game(state = defaultState, action) {
         }
 
         case actionTypes.CALC_STEP_SCORE: {
+            const isPositionQuessCorrect = isMatch(state, 'positions') === state.quess.position;
+            const isLetterQuessCorrect = isMatch(state, 'letters') === state.quess.letter;
+
             return {
                 ...state,
-                quess: {
-                    positions: checkIfPositionQuessIsCorrect(),
-                    letters: checkIfLetterQuessIsCorrect(),
-                }
+                score: {
+                    positions: updateScore(state.score.positions, isPositionQuessCorrect),
+                    letters: updateScore(state.score.letters, isLetterQuessCorrect),
+                },
             };
         }
 
         case actionTypes.FINISH: {
             return {
-                ...defaultState,
-                state: STATE_MAP.finished,
+                ...state,
+                stage: STAGE_MAP.finished,
             };
         }
 

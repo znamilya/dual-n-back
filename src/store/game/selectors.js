@@ -1,11 +1,11 @@
-const getQuess = (target, from, game, n) => {
+const getQuess = (target, from, game) => {
     const step = game.step;
     const all = game[from];
     const current = all[step];
 
     return {
         has: game.quess[target],
-        correct: current === all[step - n],
+        correct: current === all[step - game.n],
     };
 }
 
@@ -20,3 +20,7 @@ export const getCurrentLetter = (game) => {
 export const getPositionQuess = getQuess.bind(null, 'position', 'positions');
 
 export const getLetterQuess = getQuess.bind(null, 'letter', 'letters');
+
+export const isQuessDisabled = (game) => {
+    return game.step < game.n;
+}

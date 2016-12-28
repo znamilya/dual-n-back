@@ -4,14 +4,17 @@
 
 
     &__value
+        width: 0.6em
         margin: 0 10px
 
+        text-align: center
         font-size: 30px
         line-height: 1
 
 
     &__control
         $size = .8em
+        $bgColor = #aaa
 
         display: inline-block
         width: $size
@@ -24,4 +27,9 @@
 
         user-select: none
         cursor: pointer
-        background: tomato
+        border: 4px solid #fff
+        background: $bgColor
+
+
+        &:hover
+            background-color: lighten($bgColor, 10%)

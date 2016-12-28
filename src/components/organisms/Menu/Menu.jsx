@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import StartButton from 'components/molecules/StartButton/StartButton';
 import NCounter from 'components/molecules/NCounter/NCounter';
 // Store
+import * as gameActions from 'store/game/actions';
 import * as screenActions from 'store/screen/actions';
-import * as nActions from 'store/n/actions';
 
 import './Menu.styl';
 
@@ -16,29 +16,25 @@ const b = bemCl('menu');
 
 @connect(
     (state) => ({
-        n: state.n,
+        n: state.game.n,
     }),
     {
         startGame: screenActions.change.bind(null, 'game'),
-        updateN: nActions.update,
+        updateGameN: gameActions.updateN,
     }
 )
 class Menu extends React.Component {
 
-    static propTypes = {
-        // Store
-        n: PropTypes.number,
-        startGame: PropTypes.func,
-        updateN: PropTypes.func,
-    };
-
+    /* ------------------------------------------------------------------------------------------ */
+    /* RENDER                                                                                     */
+    /* ------------------------------------------------------------------------------------------ */
     render() {
         return (
             <div className={b()}>
                 <StartButton onClick={this.props.startGame} />
                 <NCounter
                     value={this.props.n}
-                    onChange={this.props.updateN}
+                    onChange={this.props.updateGameN}
                 />
             </div>
         );

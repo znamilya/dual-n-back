@@ -20,6 +20,9 @@ class NCounter extends React.PureComponent {
         this.handlePlusClick = this.handlePlusClick.bind(this);
     }
 
+    /* ------------------------------------------------------------------------------------------ */
+    /* HANDLERS                                                                                   */
+    /* ------------------------------------------------------------------------------------------ */
     handleMinusClick() {
         this.props.onChange(this.props.value - 1);
     }
@@ -28,6 +31,10 @@ class NCounter extends React.PureComponent {
         this.props.onChange(this.props.value + 1);
     }
 
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* RENDER                                                                                     */
+    /* ------------------------------------------------------------------------------------------ */
     render() {
         return (
             <div className={b()}>

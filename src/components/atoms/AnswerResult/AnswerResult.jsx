@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import bemCl from 'bem-cl';
 
-
 import './AnswerResult.styl';
 
 
@@ -14,6 +13,10 @@ class AnswerResult extends React.Component {
         correct: PropTypes.bool,
     };
 
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* METHODS                                                                                    */
+    /* ------------------------------------------------------------------------------------------ */
     resolveText(isCorrect) {
         if (isCorrect) {
             return 'Correct!';
@@ -22,6 +25,10 @@ class AnswerResult extends React.Component {
         return 'Wrong';
     }
 
+
+    /* ------------------------------------------------------------------------------------------ */
+    /* RENDER                                                                                     */
+    /* ------------------------------------------------------------------------------------------ */
     render() {
         if (!this.props.has) {
             return null;

@@ -11,7 +11,7 @@ const store = configureStore();
 const rootNode = document.getElementById('root');
 const render = (App) => {
     ReactDOM.render(
-        <Provider store={store}>
+        <Provider store={store} key={Math.random()}>
             <App />
         </Provider>,
     rootNode);

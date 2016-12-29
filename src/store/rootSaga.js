@@ -1,4 +1,4 @@
-import game from 'store/game/saga';
+import game from './game/saga';
 
 
 export default function* rootSaga() {

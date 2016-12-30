@@ -72,7 +72,7 @@ module.exports = {
             }),
             new webpack.DefinePlugin({
                 'process.env': {
-                    'NODE_ENV': JSON.stringify('production')
+                    NODE_ENV: JSON.stringify('production')
                 },
             }),
             new HtmlWebpackPlugin({
@@ -84,6 +84,9 @@ module.exports = {
             new ExtractTextPlugin('main.css'),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoErrorsPlugin(),
+            new webpack.DefinePlugin({
+                __DEV__: JSON.stringify(true),
+            }),
             new HtmlWebpackPlugin({
                 inject: true,
                 template: './src/index.tpl.html',

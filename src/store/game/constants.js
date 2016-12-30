@@ -8,4 +8,4 @@ export const MAX_N = 5;
 export const STEPS_TOTAL_COUNT = 25;
 export const PREPARE_TIME_MS = 1000;
 export const STEP_TIME_MS = 3000;
-export const AVAILABLE_LETTERS = ['l', 't', 'k', 'm', 'h'];
+export const AVAILABLE_LETTERS = ['f', 't', 'q', 'm', 'h'];

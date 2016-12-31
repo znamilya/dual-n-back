@@ -74,6 +74,7 @@ module.exports = {
                 'process.env': {
                     NODE_ENV: JSON.stringify('production')
                 },
+                __DEV__: JSON.stringify(false),
             }),
             new HtmlWebpackPlugin({
                 inject: true,

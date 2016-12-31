@@ -28,8 +28,9 @@ class Voice extends React.PureComponent {
     /* REACT                                                                                     */
     /* ------------------------------------------------------------------------------------------ */
     componentDidUpdate(prevProps, prevState) {
-        this.audioNode.pause();
-        this.audioNode.play();
+        const audio = new Audio(SOURCE_MAP[this.props.letter]);
+
+        audio.play();
     }
 
 
@@ -37,10 +38,7 @@ class Voice extends React.PureComponent {
     /* RENDER                                                                                     */
     /* ------------------------------------------------------------------------------------------ */
     render() {
-        return <audio
-            src={SOURCE_MAP[this.props.letter]}
-            ref={ref => this.audioNode = ref}
-        />;
+        return <div></div>;
     }
 }
 

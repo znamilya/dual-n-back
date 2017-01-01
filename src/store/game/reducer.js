@@ -4,7 +4,7 @@ import actionTypes from './actionTypes';
 import { STAGE_MAP, MIN_N, MAX_N, STEPS_TOTAL_COUNT, AVAILABLE_LETTERS } from './constants';
 
 
-const defaultState = {
+export const defaultState = {
     n: 1,
     stage: STAGE_MAP.prepare,
     step: -1,
@@ -19,9 +19,9 @@ const defaultState = {
         positions: 0,
         letters: 0,
     },
-}
+};
 
-const createPositionsSequence = (length) => {
+export const createPositionsSequence = (length) => {
     let result = [];
 
     for (let i = 0, j = 0; i < length; i++) {
@@ -29,9 +29,9 @@ const createPositionsSequence = (length) => {
     }
 
     return shuffle(result);
-}
+};
 
-const createLetterSequence = (length) => {
+export const createLetterSequence = (length) => {
     let result = [];
 
     for (let i = 0, j = 0; i < length; i++) {
@@ -39,9 +39,9 @@ const createLetterSequence = (length) => {
     }
 
     return shuffle(result);
-}
+};
 
-const createSequenceWithMatches = (sequence, n) => {
+export const createSequenceWithMatches = (sequence, n) => {
     const minMatchCount = Math.floor(Math.sqrt(10));
     let maybeMatchIndexes = [];
 
@@ -61,15 +61,15 @@ const createSequenceWithMatches = (sequence, n) => {
     }
 
     return sequence;
-}
+};
 
-const isMatch = (state, key) => {
+export const isMatch = (state, key) => {
     return state[key][state.step] === state[key][state.step - state.n];
-}
+};
 
-const updateScore = (score, isCorrect) => {
+export const updateScore = (score, isCorrect) => {
     return isCorrect ? score : score - 1;
-}
+};
 
 export default function game(state = defaultState, action) {
     switch (action.type) {

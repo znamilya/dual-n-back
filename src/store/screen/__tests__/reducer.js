@@ -3,16 +3,16 @@ import reducer from '../reducer';
 
 
 describe('Screen reducer', () => {
-    it('default value', () => {
-        const actual = reducer(undefined, {});
+    it('default state', () => {
+        const state = reducer(undefined, {});
 
-        expect(actual).toBe('menu');
+        expect(state).toBe('menu');
     });
 
     it('should change screen', () => {
         const nextScreen = 'game';
-        const actual = reducer(undefined, actions.change(nextScreen));
+        const state = reducer(undefined, actions.change(nextScreen));
 
-        expect(actual).toBe(nextScreen);
+        expect(state).toBe(nextScreen);
     });
 });

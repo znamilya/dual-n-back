@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "start": "serve ./public",
-    "test": "jest",
+    "test": "jest --config ./jest.json",
     "dev": "webpack-dev-server --watch",
     "build": "NODE_ENV=production webpack"
   },
@@ -54,8 +54,5 @@
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.13.2",
     "webpack-md5-hash": "^0.0.5"
-  },
-  "jest": {
-    "modulePaths": ["./src"]
   }
 }

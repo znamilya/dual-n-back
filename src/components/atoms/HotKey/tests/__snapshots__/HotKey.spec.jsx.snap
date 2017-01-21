@@ -1,0 +1,41 @@
+exports[`<HotKey /> should disable 1`] = `
+<div
+  className="hot-key hot-key_disabled">
+  <div
+    className="hot-key__desc">
+    Position match
+  </div>
+  <div
+    className="hot-key__value">
+    l
+  </div>
+</div>
+`;
+
+exports[`<HotKey /> should render itself 1`] = `
+<div
+  className="hot-key">
+  <div
+    className="hot-key__desc">
+    Position match
+  </div>
+  <div
+    className="hot-key__value">
+    l
+  </div>
+</div>
+`;
+
+exports[`<HotKey /> should render passed letter 1`] = `
+<div
+  className="hot-key__value">
+  a
+</div>
+`;
+
+exports[`<HotKey /> should render passed letter 2`] = `
+<div
+  className="hot-key__value">
+  b
+</div>
+`;

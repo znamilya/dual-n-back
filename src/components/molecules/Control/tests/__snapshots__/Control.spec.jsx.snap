@@ -1,0 +1,7 @@
+exports[`<Control /> default render 1`] = `
+<div
+  className="control">
+  <HotKey />
+  <AnswerResult />
+</div>
+`;

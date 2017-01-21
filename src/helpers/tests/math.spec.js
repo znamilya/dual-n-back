@@ -21,4 +21,4 @@ describe('fitInRange', () => {
     it('fit -10 [0, 2]', () => {
         expect(fitInRange(-10, 0, 2)).toBe(0);
     });
-})
+});

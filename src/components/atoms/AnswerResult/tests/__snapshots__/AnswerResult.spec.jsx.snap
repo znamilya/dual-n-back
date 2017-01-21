@@ -1,0 +1,15 @@
+exports[`<AnswerResult /> should not be rendered if there is no an answer 1`] = `null`;
+
+exports[`<AnswerResult /> should render respective text if there is an answer 1`] = `
+<div
+  className="answer-result answer-result_correct">
+  Correct!
+</div>
+`;
+
+exports[`<AnswerResult /> should render respective text if there is an answer 2`] = `
+<div
+  className="answer-result answer-result_wrong">
+  Wrong
+</div>
+`;

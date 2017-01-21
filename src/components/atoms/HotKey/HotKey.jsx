@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import bemCl from 'bem-cl';
 
-
 import './HotKey.styl';
 
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import bemCl from 'bem-cl';
 
-import './AnswerResult.styl';
+// import './AnswerResult.styl';
 
 
 const b = bemCl('answer-result');
@@ -11,6 +11,10 @@ class AnswerResult extends React.Component {
     static propTypes = {
         has: PropTypes.bool,
         correct: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        has: false,
     };
 
 

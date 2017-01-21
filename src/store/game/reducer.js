@@ -21,7 +21,7 @@ export const defaultState = {
     },
 };
 
-export const createPositionsSequence = (length) => {
+const createPositionsSequence = (length) => {
     let result = [];
 
     for (let i = 0, j = 0; i < length; i++) {
@@ -31,7 +31,7 @@ export const createPositionsSequence = (length) => {
     return shuffle(result);
 };
 
-export const createLetterSequence = (length) => {
+const createLetterSequence = (length) => {
     let result = [];
 
     for (let i = 0, j = 0; i < length; i++) {
@@ -41,7 +41,7 @@ export const createLetterSequence = (length) => {
     return shuffle(result);
 };
 
-export const createSequenceWithMatches = (sequence, n) => {
+const createSequenceWithMatches = (sequence, n) => {
     const minMatchCount = Math.floor(Math.sqrt(10));
     let maybeMatchIndexes = [];
 
@@ -63,11 +63,11 @@ export const createSequenceWithMatches = (sequence, n) => {
     return sequence;
 };
 
-export const isMatch = (state, key) => {
+const isMatch = (state, key) => {
     return state[key][state.step] === state[key][state.step - state.n];
 };
 
-export const updateScore = (score, isCorrect) => {
+const updateScore = (score, isCorrect) => {
     return isCorrect ? score : score - 1;
 };
 

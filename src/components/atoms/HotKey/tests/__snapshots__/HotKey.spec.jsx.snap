@@ -25,17 +25,3 @@ exports[`<HotKey /> should render itself 1`] = `
   </div>
 </div>
 `;
-
-exports[`<HotKey /> should render passed letter 1`] = `
-<div
-  className="hot-key__value">
-  a
-</div>
-`;
-
-exports[`<HotKey /> should render passed letter 2`] = `
-<div
-  className="hot-key__value">
-  b
-</div>
-`;

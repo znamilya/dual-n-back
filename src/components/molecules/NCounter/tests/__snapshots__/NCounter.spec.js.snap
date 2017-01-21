@@ -1,0 +1,19 @@
+exports[`<NCounter /> should render 1`] = `
+<div
+  className="n-counter">
+  <span
+    className="n-counter__control"
+    onClick={[Function]}>
+    -
+  </span>
+  <span
+    className="n-counter__value">
+    1
+  </span>
+  <span
+    className="n-counter__control"
+    onClick={[Function]}>
+    +
+  </span>
+</div>
+`;

@@ -25,10 +25,8 @@ class HotKey extends React.Component {
     /* ------------------------------------------------------------------------------------------ */
     /* REACT                                                                                      */
     /* ------------------------------------------------------------------------------------------ */
-    componentWillReceiveProps(nextProps) {
-        if (this.props.disabled && !nextProps.disabled) {
-            document.addEventListener('keypress', this.handleDocumentKeyPress);
-        }
+    componentDidMount() {
+        document.addEventListener('keypress', this.handleDocumentKeyPress);
     }
 
     componentWillUnmount() {
@@ -40,6 +38,10 @@ class HotKey extends React.Component {
     /* HANDLERS                                                                                   */
     /* ------------------------------------------------------------------------------------------ */
     handleDocumentKeyPress(e) {
+        if (this.props.disabled) {
+            return;
+        }
+
         if (e.key === this.props.value) {
             this.props.onFire();
         }

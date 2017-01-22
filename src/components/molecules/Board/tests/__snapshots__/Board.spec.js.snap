@@ -1,0 +1,26 @@
+exports[`<Board /> should render itself 1`] = `
+<div
+  className="board">
+  <ul
+    className="board__cells">
+    <li
+      className="board__cell" />
+    <li
+      className="board__cell board__cell_active" />
+    <li
+      className="board__cell" />
+    <li
+      className="board__cell" />
+    <li
+      className="board__cell" />
+    <li
+      className="board__cell" />
+    <li
+      className="board__cell" />
+    <li
+      className="board__cell" />
+    <li
+      className="board__cell" />
+  </ul>
+</div>
+`;
